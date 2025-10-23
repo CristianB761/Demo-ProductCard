@@ -1,0 +1,133 @@
+/* Estilos Generales del Contenedor - MOBILE FIRST */
+.product-card {
+    /* 1. Aplicamos Grid al contenedor principal */
+    display: grid;
+
+    /* Ampliación 2: Mobile-First - Una columna por defecto */
+    grid-template-columns: 1fr;
+
+    /* Estilo estético básico para móvil */
+    max-width: 100%;
+    margin: 0;
+    border: 1px solid #555;
+    box-shadow: 0 4px 8px rgba(255,255,255,0.1);
+    border-radius: 0;
+    overflow: hidden;
+    background-color: #2d2d2d;
+}
+
+/* 3) Modificador BEM para producto agotado */
+.product-card--sold-out {
+    filter: grayscale(100%);
+}
+
+/* 3. Estructura interna de la columna de información (Grid Vertical) */
+.product-info {
+    padding: 15px;
+    display: grid;
+
+/* Utilizamos Grid para gestionar la aplicación y espaciamiento vertical */
+grid-template-rows: auto auto 1fr auto;
+gap: 15px;
+}
+
+/* Opcional: Asegurar que la imagen llene su celda */
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Preservación de radio de aspecto */
+    display: block;
+}
+
+/* Utilizamos Flexbox o Grid para mover el botón al final del espacio */
+.add-to-cart-btn {
+    align-self: end; /* Fija el botón en el fondo de su celda */
+
+    padding: 10px;
+    background-color: #4CAF50;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* 3) Estilo del botón cuando el componente esté agotado (aplicándose vía [disabled] y también dentro del contenedor modificado) */
+.product-card--sold-out .add-to-cart-btn,
+.add-to-cart-btn[disabled] {
+    background-color: #666;
+    color: #999;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Estilos para la sección de Precio */
+.product-price-section {
+    /* 1. Aplicamos Flexbox para alinear horizontalmente */
+    display: flex;
+    align-items: center; /* Centramos verticalmente */
+    gap: 15px; /* Espaciado entre los precios */
+}
+
+/* Ampliación 3: Contenedor del título con etiqueta */
+.product-title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+/* 2. Estilo del precio actual (el grande) */
+.current-price {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #e74c3c; /* Color rojo elegante */
+}
+
+/* 3. Estilo del precio antiguo (tachado) */
+.old-price {
+    font-size: 1em;
+    color: #bdc3c7;
+    text-decoration: line-through; /* Texto tachado */
+}
+
+/* Ampliación 3: Estilo para la etiqueta de descuento en el título */
+.discount-tag {
+    background-color: #e74c3c;
+    color: #ffffff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.7em;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+/* Estilo del título y descripción para mejorar la presentación */
+.product-title {
+    font-size: 1.5em;
+    margin-top: 0;
+    margin-bottom: 0;
+    flex-grow: 1;
+    color: #ecf0f1;
+}
+.product-description {
+    color: #bdc3c7;
+}
+
+/* Ampliación 2: Media Query para vista de Escritorio (anchura mínima de 601px) */
+@media (min-width: 601px) {
+
+    /* Modificación del contenedor principal */
+    .product-card {
+        /* 2. Cambiamos el Grid a dos columnas (imagen e info lado a lado) */
+        grid-template-columns: 250px 1fr;
+
+        max-width: 750px;
+        margin: 40px auto;
+        border-radius: 10px;
+    }
+
+    /* Ajustar el área de información en escritorio */
+    .product-info {
+        padding: 20px;
+    }
+}
